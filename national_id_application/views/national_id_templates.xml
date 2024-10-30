@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="application_form_template" name="National ID Application Form">
+        <t t-call="website.layout">
+            <div class="container">
+                <h1 class="text-center mb-4">National ID Application Form</h1>
+                <form action="/national-id-application/submit" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <div class="form-group">
+                        <label for="applicant_name">Full Name</label>
+                        <input type="text" class="form-control" name="applicant_name" required="required"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="date_of_birth">Date of Birth</label>
+                        <input type="date" class="form-control" name="date_of_birth" required="required"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select class="form-control" name="gender" required="required">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" class="form-control" name="phone" required="required"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" name="email" required="required"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Residential Address</label>
+                        <textarea class="form-control" name="address" required="required"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="photo">Passport Photo</label>
+                        <input type="file" class="form-control" name="photo" required="required"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="lc_letter">LC Reference Letter</label>
+                        <input type="file" class="form-control" name="lc_letter" required="required"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Application</button>
+                </form>
+            </div>
+        </t>
+    </template>
+
+    <template id="application_submitted" name="Application Submitted">
+        <t t-call="website.layout">
+            <div class="container text-center">
+                <h2>Thank you for your application!</h2>
+                <p>Your application number is: <strong t-field="application.name"/></p>
+                <p>We will review your application and contact you soon.</p>
+            </div>
+        </t>
+    </template>
+</odoo>

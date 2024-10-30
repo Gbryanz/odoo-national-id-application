@@ -1,0 +1,29 @@
+.national-id-form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.national-id-form .form-group {
+    margin-bottom: 20px;
+}
+
+.national-id-form .photo-preview {
+    max-width: 200px;
+    max-height: 200px;
+    margin-top: 10px;
+}
+
+.national-id-status {
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.status-draft { background-color: #f8f9fa; }
+.status-submitted { background-color: #cce5ff; }
+.status-stage1 { background-color: #fff3cd; }
+.status-stage2 { background-color: #d4edda; }
+.status-approved { background-color: #28a745; color: white; }
+.status-rejected { background-color: #dc3545; color: white; }
+

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_national_id_application_form" model="ir.ui.view">
+        <field name="name">national.id.application.form</field>
+        <field name="model">national.id.application</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_submit" string="Submit" type="object" class="oe_highlight"
+                            visibility="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_approve_stage1" string="First Approval" type="object" class="oe_highlight"
+                            visibility="{'invisible': [('state', '!=', 'submitted')]}"/>
+                    <button name="action_approve_stage2" string="Final Approval" type="object" class="oe_highlight"
+                            visibility="{'invisible': [('state', '!=', 'stage1')]}"/>
+                    <button name="action_approve" string="Approve" type="object" class="oe_highlight"
+                            visibility="{'invisible': [('state', '!=', 'stage2')]}"/>
+                    <button name="action_reject" string="Reject" type="object" class="btn-danger"
+                            visibility="{'invisible': [('state', 'in', ['approved', 'rejected'])]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="applicant_name"/>
+                            <field name="date_of_birth"/>
+                            <field name="gender"/>
+                            <field name="phone"/>
+                        </group>
+                        <group>
+                            <field name="email"/>
+                            <field name="address"/>
+                            <field name="photo" widget="image"/>
+                            <field name="lc_letter" widget="binary"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_national_id_application_tree" model="ir.ui.view">
+        <field name="name">national.id.application.tree</field>
+        <field name="model">national.id.application</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="applicant_name"/>
+                <field name="date_of_birth"/>
+                <field name="phone"/>
+                <field name="email"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_national_id_application" model="ir.actions.act_window">
+        <field name="name">National ID Applications</field>
+        <field name="res_model">national.id.application</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem id="menu_national_id_root"
+              name="National ID"
+              sequence="10"/>
+
+    <menuitem id="menu_national_id_application"
+              name="Applications"
+              parent="menu_national_id_root"
+              action="action_national_id_application"
+              sequence="1"/>
+</odoo>

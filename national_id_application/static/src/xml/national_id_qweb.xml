@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="national_id_application.StatusBadge">
+        <span t-attf-class="national-id-status status-#{status}">
+            <t t-esc="status"/>
+        </span>
+    </t>
+</templates>
+
